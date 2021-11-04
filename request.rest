@@ -1,0 +1,46 @@
+
+GET http://localhost:3000/api/user/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjIyMjMzMzIzNDIiLCJuYW1lIjoiampkMSIsImlhdCI6MTYzNjAwOTI3MSwiZXhwIjoxNjM2MDA5MjgxfQ.Afd95t85XbJw5mmGfQuP81X8qNhL1E-Eny20X42Rqg4
+###
+
+POST http://localhost:3000/api/auth/signUp
+Content-Type: application/json
+
+{
+  "name": "jjd1",
+  "email": "2223332342",
+  "password": "password1"
+}
+
+###
+POST  http://localhost:3000/api/auth/signIn
+Content-Type: application/json
+
+{
+  "email": "2223332342",
+  "password": "password1"
+}
+
+###
+POST http://localhost:3000/api/auth/token
+Content-Type: application/json
+
+{
+ "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjIyMjMzMzIzNDIiLCJuYW1lIjoiampkMSIsImlhdCI6MTYzNjAyODQzOX0.m8HoeLdNqFB19YC2hYpG-6OusauB1bSBw_-IyVj7dVg"
+}
+
+###
+GET http://localhost:3000/api/board/boards
+
+###
+GET http://localhost:3000/api/board/boards/6183f2ce4283e9acd1a57553
+
+###
+POST http://localhost:3000/api/board/write
+Content-Type: application/json
+
+{
+  "name": "test",
+  "title": "test title",
+  "content": "test content"
+}

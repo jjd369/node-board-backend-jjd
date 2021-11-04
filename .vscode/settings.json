@@ -1,0 +1,5 @@
+{
+    "eslint.packageManager": "yarn",
+    "debug.javascript.usePreview": false,
+    "editor.tabSize": 2
+}
