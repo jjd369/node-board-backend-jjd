@@ -1,4 +1,3 @@
-// import { startDatabase } from '@/config/database'
 import mongoose from 'mongoose'
 
 const users = new mongoose.Schema({

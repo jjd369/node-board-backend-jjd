@@ -1,0 +1,11 @@
+// import { startDatabase } from '@/config/database'
+import mongoose from 'mongoose'
+
+const tokens = new mongoose.Schema({
+  token: {
+    type: String,
+    unique: true,
+  }
+}, { versionKey: false })
+
+export default mongoose.model('Tokens', tokens)

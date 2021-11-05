@@ -1,20 +1,21 @@
 require('dotenv').config()
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { getUser, insertUser } from '@/controllers/usersController'
+// import { getUser, insertUser } from '@/controllers/usersController'
+import usersModel from '@/models/users'
 import { insertToken, getToken } from '@/controllers/tokenController'
 
 // 회원가입
 export async function signUp(data) {
   const { email, name, password } = data
   // email 중복 확인
-  const userRecord = await getUser({ email })
+  const userRecord = await usersModel.findOne({ email })
   if (userRecord) throw new Error('이메일이 중복 되었습니다.')
   // hasing password
   const hashedPassword = await bcrypt.hash(password, 10)
 
   const userObj = { name, password: hashedPassword, email }
-  const result = await insertUser(userObj)
+  const result = await usersModel.create(userObj)
 
   if (!result) throw new Error('계정 생성이 실패했습니다.')
 
@@ -25,7 +26,7 @@ export async function signUp(data) {
 export async function signIn(data) {
   const { email, password } = data
 
-  const userRecord = await getUser({ email })
+  const userRecord = await usersModel.findOne({ email })
   // 이메일 확인
   if (!userRecord) throw new Error('이메일을 확인해주세요.')
   // 비밀번호 확인
