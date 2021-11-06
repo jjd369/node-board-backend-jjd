@@ -21,6 +21,8 @@ routes.post('/write', wrapAsync(async (req, res) => {
 
 routes.delete('/delete', wrapAsync(async (req, res) => {
   await boardModel.deleteOne({ _id: req.body.id })
+  res.json({ message: '삭제 되었습니다.' }).status(200)
+
 }))
 
 export default routes

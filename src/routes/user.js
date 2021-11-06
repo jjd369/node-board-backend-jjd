@@ -5,8 +5,8 @@ import { authenticateToken } from '@/middlewares/isAuth'
 const routes = Router()
 
 routes.get('/me', authenticateToken, wrapAsync(async (req, res) => {
-  userRecord = await usersModel.findOne({})
-  res.json(userRecord).state(200)
+  const name = req.userName
+  res.json({ name }).status(200)
 }))
 
 export default routes

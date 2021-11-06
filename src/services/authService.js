@@ -1,9 +1,8 @@
 require('dotenv').config()
+
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-// import { getUser, insertUser } from '@/controllers/usersController'
 import usersModel from '@/models/users'
-
 import { insertToken, getToken, deleteToken } from '@/controllers/tokenController'
 
 // 회원가입
@@ -36,7 +35,7 @@ export async function signIn(data) {
   const refreshToken = generateRfreshToken({ email: userRecord.email, name: userRecord.name })
   await insertToken({ refreshToken })
 
-  return { accessToken, refreshToken }
+  return { accessToken, refreshToken, name: userRecord.name }
 }
 
 // 로그아웃 
@@ -49,7 +48,7 @@ export async function signOut(data) {
 
 // 토근 재발급
 export async function refreshToken(data) {
-  // db에서 토큰 확인
+  // db에서 토큰 확
   const tokenRecode = await getToken(data)
   if (!tokenRecode) throw new Error('사용할 수 없는 토큰입니다.')
 
@@ -60,7 +59,6 @@ export async function refreshToken(data) {
     const accessToken = generateAccessToken({ email: userRecord.email, name: userRecord.name })
     return accessToken
   })
-
 }
 
 // 토근 생성
@@ -68,5 +66,5 @@ function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10s' })
 }
 function generateRfreshToken(user) {
-  return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
+  return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' })
 }

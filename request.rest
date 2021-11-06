@@ -8,7 +8,7 @@ Content-Type: application/json
 
 {
   "name": "jjd1",
-    "email": "ghana@1234.com",
+    "email": "ghana369@gmail.com",
   "password": "password1"
 }
 
@@ -17,7 +17,7 @@ POST  http://localhost:3000/api/auth/signIn
 Content-Type: application/json
 
 {
-  "email": "ghana@1234.com",
+  "email": "ghana369@gmail.com",
   "password": "password1"
 }
 ###
@@ -25,15 +25,15 @@ delete  http://localhost:3000/api/auth/signOut
 Content-Type: application/json
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hQDEyMzQuY29tIiwibmFtZSI6ImpqZDEiLCJpYXQiOjE2MzYxOTE1NzZ9.yLUbMx2_mt1q6PXTBJqPJUlx-OWzyKH9UNeQwfLkppo"
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hQDEyMzQuY29tIiwibmFtZSI6ImpqZDEiLCJpYXQiOjE2MzYyMDM4NjUsImV4cCI6MTYzNjgwODY2NX0.cfUR4mXMb_KXvMJhyAyVXLR1NvbBjh9k2sTeHOohI7Y"
 }
 
 ###
-POST http://localhost:3000/api/auth/token
+POST http://localhost:3000/api/auth/refreshToken
 Content-Type: application/json
 
 {
- "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjIyMjMzMzIzNDIiLCJuYW1lIjoiampkMSIsImlhdCI6MTYzNjAyODQzOX0.m8HoeLdNqFB19YC2hYpG-6OusauB1bSBw_-IyVj7dVg"
+"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hQDEyMzQuY29tIiwibmFtZSI6ImpqZDEiLCJpYXQiOjE2MzYyMDM4NjUsImV4cCI6MTYzNjgwODY2NX0.cfUR4mXMb_KXvMJhyAyVXLR1NvbBjh9k2sTeHOohI7Y"
 }
 
 ###
