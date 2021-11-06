@@ -10,7 +10,8 @@ const users = new mongoose.Schema({
     type: String,
     lowercase: true,
     unique: true,
-    index: true
+    index: true,
+    match: /[\w\-\._]+@[\w\-\._]+\.\w{2,10}/
   },
   password: String
 }, { versionKey: false })

@@ -1,5 +1,4 @@
 import usersModel from '@/models/users'
-import { ObjectID } from 'mongodb'
 
 
 export async function insertUser(data) {
@@ -10,20 +9,15 @@ export async function getUser(data) {
   return await usersModel.findOne(data)
 }
 
-export async function deleteUser(id) {
-  return await usersModel.deleteOne({
-    _id: new ObjectID(id)
-  })
+export async function deleteUser(data) {
+  return await usersModel.deleteOne(data)
 }
 
-export async function updateUser(id, user) {
-  delete user._id
+export async function updateUser(data) {
   await usersModel.updata(
-    { _id: new ObjectID(id) },
+    { _id: data.id },
     {
-      $set: {
-        ...user
-      }
+      ...data
     }
   )
 }

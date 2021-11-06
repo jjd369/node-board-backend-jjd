@@ -2,7 +2,7 @@
 import mongoose from 'mongoose'
 
 const tokens = new mongoose.Schema({
-  token: {
+  refreshToken: {
     type: String,
     unique: true,
   }

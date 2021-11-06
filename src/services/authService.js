@@ -3,7 +3,8 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 // import { getUser, insertUser } from '@/controllers/usersController'
 import usersModel from '@/models/users'
-import { insertToken, getToken } from '@/controllers/tokenController'
+
+import { insertToken, getToken, deleteToken } from '@/controllers/tokenController'
 
 // 회원가입
 export async function signUp(data) {
@@ -25,18 +26,25 @@ export async function signUp(data) {
 // 로그인
 export async function signIn(data) {
   const { email, password } = data
-
-  const userRecord = await usersModel.findOne({ email })
   // 이메일 확인
+  const userRecord = await usersModel.findOne({ email })
   if (!userRecord) throw new Error('이메일을 확인해주세요.')
   // 비밀번호 확인
   if (!await bcrypt.compare(password, userRecord.password)) throw new Error('비밀번호를 확인해주세요.')
 
   const accessToken = generateAccessToken({ email: userRecord.email, name: userRecord.name })
   const refreshToken = generateRfreshToken({ email: userRecord.email, name: userRecord.name })
-
   await insertToken({ refreshToken })
+
   return { accessToken, refreshToken }
+}
+
+// 로그아웃 
+export async function signOut(data) {
+  const tokenRecord = await getToken(data)
+  if (!tokenRecord) throw new Error('해당 토큰이 존재하지 않습니다.')
+  return await deleteToken(data)
+
 }
 
 // 토근 재발급
