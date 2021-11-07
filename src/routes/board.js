@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import wrapAsync from '@/logs/errorHandler'
 import boardModel from '@/models/borad'
+import { authenticateToken } from '@/middlewares/isAuth'
 
 const routes = Router()
 
@@ -15,8 +16,8 @@ routes.get('/boards/:id', wrapAsync(async (req, res) => {
 }))
 
 routes.post('/write', wrapAsync(async (req, res) => {
-  await boardModel.create(req.body)
-  res.json({ message: '글 작성 완료' }).status(200)
+  const result = await boardModel.create(req.body)
+  res.json({ message: '글 작성 완료', ...result }).status(200)
 }))
 
 routes.delete('/delete', wrapAsync(async (req, res) => {
