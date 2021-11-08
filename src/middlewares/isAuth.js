@@ -8,7 +8,7 @@ export function authenticateToken(req, res, next) {
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, userObj) => {
     if (err) return res.sendStatus(401)
 
-    req.userName = userObj.name
+    req.userInfo = userObj
     next()
   })
 }

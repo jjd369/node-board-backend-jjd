@@ -31,8 +31,8 @@ export async function signIn(data) {
   // 비밀번호 확인
   if (!await bcrypt.compare(password, userRecord.password)) throw new Error('비밀번호를 확인해주세요.')
 
-  const accessToken = generateAccessToken({ email: userRecord.email, name: userRecord.name })
-  const refreshToken = generateRfreshToken({ email: userRecord.email, name: userRecord.name })
+  const accessToken = generateAccessToken({ email: userRecord.email, name: userRecord.name, _id: userRecord._id })
+  const refreshToken = generateRfreshToken({ email: userRecord.email, name: userRecord.name, _id: userRecord._id })
   await insertToken({ refreshToken })
 
   return { accessToken, refreshToken, name: userRecord.name }
@@ -63,7 +63,7 @@ export async function refreshToken(data) {
 
 // 토근 생성
 function generateAccessToken(user) {
-  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10s' })
+  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30m' })
 }
 function generateRfreshToken(user) {
   return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' })

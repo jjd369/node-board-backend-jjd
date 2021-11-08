@@ -1,8 +1,9 @@
+# user api
+GET http://localhost:3000/api/user/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4OTQzZTlkNThmOTIyNGFlMTBiY2ZjIiwiaWF0IjoxNjM2Mzg1NzkxLCJleHAiOjE2MzYzODc1OTF9.SlegxStqM4Oi_sLNb06tVpW7-rDMT7Kqsp6HXe7b8TY
 
-GET http://localhost:3000/api/user/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hQGdoYW5hLmNvbSIsIm5hbWUiOiJqamQxIiwiaWF0IjoxNjM2MTc2MjcxLCJleHAiOjE2MzYxNzYyODF9.b4kjHN_D_BHueMj5LW0kYQv9qtxd7J7LD7CT16sCsyk
-###
-
+# auth api
+### signUp
 POST http://localhost:3000/api/auth/signUp
 Content-Type: application/json
 
@@ -12,7 +13,7 @@ Content-Type: application/json
   "password": "password1"
 }
 
-###
+### signIn
 POST  http://localhost:3000/api/auth/signIn
 Content-Type: application/json
 
@@ -20,7 +21,7 @@ Content-Type: application/json
   "email": "ghana369@gmail.com",
   "password": "password1"
 }
-###
+### signOut
 delete  http://localhost:3000/api/auth/signOut
 Content-Type: application/json
 
@@ -28,7 +29,7 @@ Content-Type: application/json
   "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hQDEyMzQuY29tIiwibmFtZSI6ImpqZDEiLCJpYXQiOjE2MzYyMDM4NjUsImV4cCI6MTYzNjgwODY2NX0.cfUR4mXMb_KXvMJhyAyVXLR1NvbBjh9k2sTeHOohI7Y"
 }
 
-###
+### refreshToken
 POST http://localhost:3000/api/auth/refreshToken
 Content-Type: application/json
 
@@ -36,18 +37,67 @@ Content-Type: application/json
 "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hQDEyMzQuY29tIiwibmFtZSI6ImpqZDEiLCJpYXQiOjE2MzYyMDM4NjUsImV4cCI6MTYzNjgwODY2NX0.cfUR4mXMb_KXvMJhyAyVXLR1NvbBjh9k2sTeHOohI7Y"
 }
 
-###
+
+# board api
+
+###  boards
 GET http://localhost:3000/api/board/boards
 
-###
-GET http://localhost:3000/api/board/boards/6183f2ce4283e9acd1a57553
+### boards:id
+GET http://localhost:3000/api/board/boards/6188a2e99190ced1c8837c2c
 
-###
+###  write
 POST http://localhost:3000/api/board/write
 Content-Type: application/json
 
 {
-  "name": "test",
+  "author": "618943e9d58f9224ae10bcfc",
   "title": "test title",
   "content": "test content"
+}
+### update
+patch http://localhost:3000/api/board/update
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4OTQ2OGI4NTJhYjkzZWNlNTFiYWZjIiwiaWF0IjoxNjM2Mzg2NDQ3LCJleHAiOjE2MzYzODgyNDd9.Bv3xXPgilkKnKu6dS6y1ZYQ6E5XFB-GOL6UD_urfOto
+Content-Type: application/json
+
+{
+  "_id": "618944e13c595d0c61685a54",
+  "author": "618943e9d58f9224ae10bcfd",
+  "title": "patch test",
+  "content": "변경된 내용입니다."
+}
+### delete
+DELETE  http://localhost:3000/api/board/delete
+Content-Type: application/json
+
+{
+  "id": "6187af247e5192dba570a0c7"
+}
+
+# comments 
+###
+GET http://localhost:3000/api/comment/comments
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4OTQ2OGI4NTJhYjkzZWNlNTFiYWZjIiwiaWF0IjoxNjM2Mzg2NDQ3LCJleHAiOjE2MzYzODgyNDd9.Bv3xXPgilkKnKu6dS6y1ZYQ6E5XFB-GOL6UD_urfOto
+###
+POST http://localhost:3000/api/comment/write
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4OTQ2OGI4NTJhYjkzZWNlNTFiYWZjIiwiaWF0IjoxNjM2Mzg2NDQ3LCJleHAiOjE2MzYzODgyNDd9.Bv3xXPgilkKnKu6dS6y1ZYQ6E5XFB-GOL6UD_urfOto
+Content-Type: application/json
+
+{
+  "content": "댓글달기43",
+  "author": "6188cb0d01b61075f2eb3dee",
+  "board": "61893d4840387dd09250813e"
+}
+
+###
+patch http://localhost:3000/api/comment/update
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4OTQ2OGI4NTJhYjkzZWNlNTFiYWZjIiwiaWF0IjoxNjM2Mzg2NDQ3LCJleHAiOjE2MzYzODgyNDd9.Bv3xXPgilkKnKu6dS6y1ZYQ6E5XFB-GOL6UD_urfOto
+Content-Type: application/json
+
+{
+  "content": "댓글업데이트",
+  "author": "6188cb0d01b61075f2eb3dee",
+  "board": "61893d4840387dd09250813e",
+  "_id": "6189472660e6d942e8f60557",
+  "updatedAt": "2021-11-08T15:49:58.620Z"
 }
