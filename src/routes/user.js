@@ -5,7 +5,8 @@ import { authenticateToken } from '@/middlewares/isAuth'
 const routes = Router()
 
 routes.get('/me', authenticateToken, wrapAsync(async (req, res) => {
-  const name = req.userName
+  // 유저 이름 리턴
+  const name = req.userInfo.name
   res.json({ name }).status(200)
 }))
 

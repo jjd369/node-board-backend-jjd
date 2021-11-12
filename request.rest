@@ -1,7 +1,6 @@
 # user api
 GET http://localhost:3000/api/user/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4OTQzZTlkNThmOTIyNGFlMTBiY2ZjIiwiaWF0IjoxNjM2Mzg1NzkxLCJleHAiOjE2MzYzODc1OTF9.SlegxStqM4Oi_sLNb06tVpW7-rDMT7Kqsp6HXe7b8TY
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4ZDMyZjNiNzllYTdlN2NhNzZiMTM3IiwiaWF0IjoxNjM2NjQzNTgyLCJleHAiOjE2MzY2NDUzODJ9.9e5T6OzSad2KwxDaUPXQ_R7DoWr2LuUxdgs1m6WqJAg
 # auth api
 ### signUp
 POST http://localhost:3000/api/auth/signUp
@@ -26,7 +25,7 @@ delete  http://localhost:3000/api/auth/signOut
 Content-Type: application/json
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hQDEyMzQuY29tIiwibmFtZSI6ImpqZDEiLCJpYXQiOjE2MzYyMDM4NjUsImV4cCI6MTYzNjgwODY2NX0.cfUR4mXMb_KXvMJhyAyVXLR1NvbBjh9k2sTeHOohI7Y"
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4ZDMxYmQ2YWJkYWJhNTE2MTY0MzljIiwiaWF0IjoxNjM2NjQzMjY1LCJleHAiOjE2MzcyNDgwNjV9.JLGKGPXlLOk1UIxqPqWiGQE1V2hkvPwMugOBrB1i3pg"
 }
 
 ### refreshToken
@@ -42,16 +41,17 @@ Content-Type: application/json
 
 ###  boards
 GET http://localhost:3000/api/board/boards
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4ZDMyZjNiNzllYTdlN2NhNzZiMTM3IiwiaWF0IjoxNjM2NjQzNTgyLCJleHAiOjE2MzY2NDUzODJ9.9e5T6OzSad2KwxDaUPXQ_R7DoWr2LuUxdgs1m6WqJAg
+###
+GET http://localhost:3000/api/board/boards/618d330db79ea7e7ca76b13f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4ZDMyZjNiNzllYTdlN2NhNzZiMTM3IiwiaWF0IjoxNjM2NjQzNTgyLCJleHAiOjE2MzY2NDUzODJ9.9e5T6OzSad2KwxDaUPXQ_R7DoWr2LuUxdgs1m6WqJAg
 
-### boards:id
-GET http://localhost:3000/api/board/boards/6188a2e99190ced1c8837c2c
-
-###  write
+###
 POST http://localhost:3000/api/board/write
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4ZDMyZjNiNzllYTdlN2NhNzZiMTM3IiwiaWF0IjoxNjM2NjQzNTgyLCJleHAiOjE2MzY2NDUzODJ9.9e5T6OzSad2KwxDaUPXQ_R7DoWr2LuUxdgs1m6WqJAg
 Content-Type: application/json
 
 {
-  "author": "618943e9d58f9224ae10bcfc",
   "title": "test title",
   "content": "test content"
 }
@@ -68,7 +68,7 @@ Content-Type: application/json
 }
 ### delete
 DELETE  http://localhost:3000/api/board/delete
-Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4OWQxNTM5NmU4ZmU0YzIwZDk5MTg3IiwiaWF0IjoxNjM2NDIxOTc2LCJleHAiOjE2MzY0MjM3NzZ9.DDDH2Cqyre57s9U5EM4FCBYPol7H-ZJ2MS6tyj_pE8gContent-Type: application/json
 
 {
   "id": "6187af247e5192dba570a0c7"
@@ -77,21 +77,31 @@ Content-Type: application/json
 # comments 
 ###
 GET http://localhost:3000/api/comment/comments
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4OTQ2OGI4NTJhYjkzZWNlNTFiYWZjIiwiaWF0IjoxNjM2Mzg2NDQ3LCJleHAiOjE2MzYzODgyNDd9.Bv3xXPgilkKnKu6dS6y1ZYQ6E5XFB-GOL6UD_urfOto
-###
-POST http://localhost:3000/api/comment/write
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4OTQ2OGI4NTJhYjkzZWNlNTFiYWZjIiwiaWF0IjoxNjM2Mzg2NDQ3LCJleHAiOjE2MzYzODgyNDd9.Bv3xXPgilkKnKu6dS6y1ZYQ6E5XFB-GOL6UD_urfOto
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4ZDMyZjNiNzllYTdlN2NhNzZiMTM3IiwiaWF0IjoxNjM2NjQzNTgyLCJleHAiOjE2MzY2NDUzODJ9.9e5T6OzSad2KwxDaUPXQ_R7DoWr2LuUxdgs1m6WqJAg
+### 댓글 달기
+POST http://localhost:3000/api/comment/writeToBoard
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4ZDMyZjNiNzllYTdlN2NhNzZiMTM3IiwiaWF0IjoxNjM2NjQzNTgyLCJleHAiOjE2MzY2NDUzODJ9.9e5T6OzSad2KwxDaUPXQ_R7DoWr2LuUxdgs1m6WqJAg
 Content-Type: application/json
 
 {
-  "content": "댓글달기43",
-  "author": "6188cb0d01b61075f2eb3dee",
-  "board": "61893d4840387dd09250813e"
+  "content": "댓글 달기 테스트",
+  "author": "618d31bd6abdaba51616439c",
+  "board": "618d330db79ea7e7ca76b13f"
+}
+### 대댓글달기
+POST http://localhost:3000/api/comment/writeToComment
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4ZDMyZjNiNzllYTdlN2NhNzZiMTM3IiwiaWF0IjoxNjM2NjQzNTgyLCJleHAiOjE2MzY2NDUzODJ9.9e5T6OzSad2KwxDaUPXQ_R7DoWr2LuUxdgs1m6WqJAg
+Content-Type: application/json
+
+{
+  "content": "대댓글 달기 테스트",
+  "author": "618d21f3dcf78084cf3483f0",
+  "comments": "618d331ab79ea7e7ca76b142"
 }
 
 ###
 patch http://localhost:3000/api/comment/update
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4OTQ2OGI4NTJhYjkzZWNlNTFiYWZjIiwiaWF0IjoxNjM2Mzg2NDQ3LCJleHAiOjE2MzYzODgyNDd9.Bv3xXPgilkKnKu6dS6y1ZYQ6E5XFB-GOL6UD_urfOto
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4ZDMyZjNiNzllYTdlN2NhNzZiMTM3IiwiaWF0IjoxNjM2NjQzNTgyLCJleHAiOjE2MzY2NDUzODJ9.9e5T6OzSad2KwxDaUPXQ_R7DoWr2LuUxdgs1m6WqJAg
 Content-Type: application/json
 
 {
@@ -101,3 +111,4 @@ Content-Type: application/json
   "_id": "6189472660e6d942e8f60557",
   "updatedAt": "2021-11-08T15:49:58.620Z"
 }
+

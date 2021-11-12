@@ -46,7 +46,6 @@ app.post('/write', authenticateToken, async (req, res) => {
     const board = { user: req.userName, title: req.body.title, content: req.body.content }
 
     await insertBoard(board)
-    console.log(req.files)
     res.status(201).json({ message: '글이 등록 되었습니다.' })
 
   } catch {

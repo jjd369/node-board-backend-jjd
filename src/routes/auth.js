@@ -17,7 +17,6 @@ routes.post('/signUp', wrapAsync(async (req, res) => {
 }))
 
 routes.post('/refreshToken', wrapAsync(async (req, res) => {
-  console.log(req.body)
   const accessToken = await refreshToken(req.body)
   res.status(200).json({ accessToken })
 }))
