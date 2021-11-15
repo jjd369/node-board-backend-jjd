@@ -7,7 +7,8 @@ const routes = Router()
 routes.get('/me', authenticateToken, wrapAsync(async (req, res) => {
   // 유저 이름 리턴
   const name = req.userInfo.name
-  res.json({ name }).status(200)
+  const email = req.userInfo.email
+  res.json({ name, email }).status(200)
 }))
 
 export default routes

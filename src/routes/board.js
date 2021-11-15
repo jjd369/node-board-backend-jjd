@@ -6,7 +6,7 @@ import { authenticateToken } from '@/middlewares/isAuth'
 const routes = Router()
 
 routes.get('/boards', authenticateToken, wrapAsync(async (req, res) => {
-  const boardRecord = await boardModel.find({}).populate('author')
+  const boardRecord = await boardModel.find({})
   res.json(boardRecord).status(200)
 }))
 
@@ -16,12 +16,12 @@ routes.get('/boards/:id', authenticateToken, wrapAsync(async (req, res) => {
 }))
 
 routes.post('/write', authenticateToken, wrapAsync(async (req, res) => {
-  const result = await boardModel.create({ author: req.userInfo._id, ...req.body })
+  const result = await boardModel.create({ ...req.userInfo, ...req.body })
   res.json({ message: '글 작성 완료', ...result }).status(200)
 }))
 
 routes.patch('/update', authenticateToken, wrapAsync(async (req, res) => {
-  if (req.userInfo._id !== req.body.author) return res.json({ message: '권한이 없습니다.' })
+  if (req.userInfo.email !== req.body.email) return res.json({ message: '권한이 없습니다.' })
   await boardModel.updateOne({ _id: req.body._id }, { updatedAt: Date.now(), ...req.body })
   res.json({ message: '글 수정 완료' })
 }))

@@ -9,7 +9,7 @@ const routes = Router()
 routes.post('/writeToBoard', authenticateToken, wrapAsync(async (req, res) => {
   console.log(req.userInfo)
   // db에 comment 추가 
-  const comment = await commentsModel.create({ author: req.userInfo._id, name: req.userInfo.name, ...req.body })
+  const comment = await commentsModel.create({ ...req.userInfo, ...req.body })
   // board에 comment id 추가
   await boardsModel.findOneAndUpdate({ _id: comment.board }, { $push: { comments: comment._id } })
 
@@ -18,7 +18,7 @@ routes.post('/writeToBoard', authenticateToken, wrapAsync(async (req, res) => {
 
 routes.post('/writeToComment', authenticateToken, wrapAsync(async (req, res) => {
   // db에 comment 추가 
-  const comment = await commentsModel.create({ author: req.userInfo._id, name: req.userInfo.name, content: req.body.content, })
+  const comment = await commentsModel.create({ ...req.userInfo, content: req.body.content, })
   // comments에 comment id 추가
   await commentsModel.findOneAndUpdate({ _id: req.body.comments }, { $push: { comments: comment._id } })
 

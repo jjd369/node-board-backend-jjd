@@ -11,7 +11,7 @@ export function authenticateToken(req, res, next) {
   // 토근에서 유저정보 추출하여 리턴 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, userObj) => {
     if (err) return res.sendStatus(401)
-    req.userInfo = userObj
+    req.userInfo = { name: userObj.name, email: userObj.email }
     next()
   })
 }
