@@ -5,7 +5,7 @@ const files = mongoose.Schema({
   serverFileName: String,
   size: Number,
   uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
-  postedId: { type: mongoose.Schema.Types.ObjectId, ref: 'board' },
+  boardId: { type: mongoose.Schema.Types.ObjectId, ref: 'board' },
   isDeleted: { type: Boolean, default: false }
 }, { versionKey: false })
 

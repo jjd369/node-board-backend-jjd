@@ -2,21 +2,38 @@ import { Router } from 'express'
 import wrapAsync from '@/logs/errorHandler'
 import boardModel from '@/models/borad'
 import { authenticateToken } from '@/middlewares/isAuth'
+import { upload } from '@/middlewares/uploadFile'
+import fileModel from '@/models/file'
 
 const routes = Router()
 
 routes.get('/boards', authenticateToken, wrapAsync(async (req, res) => {
   const boardRecord = await boardModel.find({})
+    .populate('uploadedBy', ['email', 'name'])
+    .populate('attachment')
+
   res.json(boardRecord).status(200)
 }))
 
 routes.get('/boards/:id', authenticateToken, wrapAsync(async (req, res) => {
-  const boardRecord = await boardModel.findOne({ _id: req.params.id }).populate({ path: 'comments', populate: { path: 'comments' } })
+  const boardRecord = await boardModel.findOne({ _id: req.params.id })
+    .populate({ path: 'comments', populate: [{ path: 'comments', populate: { path: 'uploadedBy', select: ['name', 'email'] } }, { path: 'uploadedBy', select: ['name', 'email'] }] })
+    .populate({ path: 'uploadedBy', select: ['name', 'email'] })
+    .populate('attachment')
+
+
   res.json(boardRecord).status(200)
 }))
 
-routes.post('/write', authenticateToken, wrapAsync(async (req, res) => {
-  const result = await boardModel.create({ ...req.userInfo, ...req.body })
+routes.post('/write', authenticateToken, upload.single('attachment'), wrapAsync(async (req, res) => {
+  if (req.file) {
+    const file = await fileModel.create({ originalFileName: req.file.originalname, serverFileName: req.file.filename, uploadedBy: req.userInfo._id })
+    const result = await boardModel.create({ uploadedBy: req.userInfo._id, ...req.body, attachment: file._id })
+    return res.json({ message: '글 작성 완료', ...result }).status(200)
+  }
+
+  const result = await boardModel.create({ uploadedBy: req.userInfo._id, ...req.body })
+
   res.json({ message: '글 작성 완료', ...result }).status(200)
 }))
 

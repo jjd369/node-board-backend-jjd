@@ -4,7 +4,18 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import usersModel from '@/models/users'
 import tokensModel from '@/models/tokens'
-// import { insertToken, getToken, deleteToken } from '@/controllers/tokenController'
+
+createAdmin()
+// admin 
+export async function createAdmin() {
+  const hashedPassword = await bcrypt.hash('123123', 10)
+  console.log(hashedPassword)
+  await usersModel.create({
+    name: 'admin',
+    email: 'test@123.com',
+    password: hashedPassword,
+  })
+}
 
 // 회원가입
 export async function signUp(data) {
@@ -31,11 +42,13 @@ export async function signIn(data) {
   const userRecord = await usersModel.findOne({ email })
   if (!userRecord) throw new Error('이메일을 확인해주세요.')
   // 비밀번호 확인
-  if (!await bcrypt.compare(password, userRecord.password)) throw new Error('비밀번호를 확인해주세요.')
+  const comparePassword = await bcrypt.compare(password, userRecord.password)
+  if (!comparePassword) throw new Error('비밀번호를 확인해주세요.')
 
   // 토큰 생성
   const accessToken = generateAccessToken({ email: userRecord.email, name: userRecord.name, _id: userRecord._id })
   const refreshToken = generateRfreshToken({ email: userRecord.email, name: userRecord.name, _id: userRecord._id })
+
   // db에 refresh token 저장
   await await tokensModel.create({ refreshToken })
 

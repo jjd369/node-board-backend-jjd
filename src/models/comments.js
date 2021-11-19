@@ -2,12 +2,7 @@ import mongoose from 'mongoose'
 
 const comments = mongoose.Schema({
   content: String,
-  email: {
-    type: String,
-    lowercase: true,
-    match: /[\w\-\._]+@[\w\-\._]+\.\w{2,10}/
-  },
-  name: String,
+  uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
   board: { type: mongoose.Schema.Types.ObjectId, ref: 'Boards' },
   createdAt: { type: Date, default: Date.now }, // default 항목으로 현재시간
   updatedAt: { type: Date },

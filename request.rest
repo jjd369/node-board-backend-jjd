@@ -112,3 +112,5 @@ Content-Type: application/json
   "updatedAt": "2021-11-08T15:49:58.620Z"
 }
 
+### file 
+get http://localhost:3000/api/file/6ea9d2eeaf91cc96d99becc5fe405100
