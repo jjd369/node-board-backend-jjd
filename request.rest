@@ -114,3 +114,8 @@ Content-Type: application/json
 
 ### file 
 get http://localhost:3000/api/file/6ea9d2eeaf91cc96d99becc5fe405100
+
+
+### users
+
+get http://localhost:3000/api/user/users

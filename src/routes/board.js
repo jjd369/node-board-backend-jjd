@@ -17,8 +17,8 @@ routes.get('/boards', authenticateToken, wrapAsync(async (req, res) => {
 
 routes.get('/boards/:id', authenticateToken, wrapAsync(async (req, res) => {
   const boardRecord = await boardModel.findOne({ _id: req.params.id })
-    .populate({ path: 'comments', populate: [{ path: 'comments', populate: { path: 'uploadedBy', select: ['name', 'email'] } }, { path: 'uploadedBy', select: ['name', 'email'] }] })
-    .populate({ path: 'uploadedBy', select: ['name', 'email'] })
+    .populate({ path: 'comments', populate: [{ path: 'comments', populate: { path: 'uploadedBy', select: ['name', 'email', 'image'] } }, { path: 'uploadedBy', select: ['name', 'email', 'image'] }] })
+    .populate({ path: 'uploadedBy', select: ['name', 'email', 'image'] })
     .populate('attachment')
 
 

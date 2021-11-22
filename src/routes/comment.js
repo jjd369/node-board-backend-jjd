@@ -7,7 +7,6 @@ import { authenticateToken } from '@/middlewares/isAuth'
 const routes = Router()
 
 routes.post('/writeToBoard', authenticateToken, wrapAsync(async (req, res) => {
-  console.log(req.userInfo)
   // db에 comment 추가 
   const comment = await commentsModel.create({ uploadedBy: req.userInfo._id, ...req.body })
   // board에 comment id 추가

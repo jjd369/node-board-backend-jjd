@@ -14,7 +14,11 @@ const users = new mongoose.Schema({
     index: true,
     match: /[\w\-\._]+@[\w\-\._]+\.\w{2,10}/
   },
-  password: String
+  password: String,
+  image: {
+    type: String,
+    default: ''
+  }
 }, { versionKey: false })
 
 export default mongoose.model('Users', users)

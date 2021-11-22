@@ -9,7 +9,6 @@ createAdmin()
 // admin 
 export async function createAdmin() {
   const hashedPassword = await bcrypt.hash('123123', 10)
-  console.log(hashedPassword)
   await usersModel.create({
     name: 'admin',
     email: 'test@123.com',
@@ -18,7 +17,11 @@ export async function createAdmin() {
 }
 
 // 회원가입
-export async function signUp(data) {
+export async function signUp(data, file) {
+
+  let userImageUrl
+  file ? userImageUrl = file.filename : userImageUrl = ''
+
   const { email, name, password } = data
   // email 중복 확인
   const userRecord = await usersModel.findOne({ email })
@@ -26,7 +29,7 @@ export async function signUp(data) {
   // 해싱 패스워드
   const hashedPassword = await bcrypt.hash(password, 10)
 
-  const userObj = { name, password: hashedPassword, email }
+  const userObj = { name, password: hashedPassword, email, image: userImageUrl }
   // db에 user 생성
   const result = await usersModel.create(userObj)
 
