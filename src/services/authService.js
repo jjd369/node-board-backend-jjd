@@ -41,9 +41,11 @@ export async function signUp(data, file) {
 // 로그인
 export async function signIn(data) {
   const { email, password } = data
+
   // 이메일 확인
   const userRecord = await usersModel.findOne({ email })
   if (!userRecord) throw new Error('이메일을 확인해주세요.')
+
   // 비밀번호 확인
   const comparePassword = await bcrypt.compare(password, userRecord.password)
   if (!comparePassword) throw new Error('비밀번호를 확인해주세요.')
@@ -53,9 +55,10 @@ export async function signIn(data) {
   const refreshToken = generateRfreshToken({ email: userRecord.email, name: userRecord.name, _id: userRecord._id })
 
   // db에 refresh token 저장
-  await await tokensModel.create({ refreshToken })
+  await tokensModel.create({ refreshToken })
 
-  return { accessToken, refreshToken, name: userRecord.name }
+  return { email: userRecord.email, name: userRecord.name, image: userRecord.image, createdAt: userRecord.createdAt, accessToken, refreshToken }
+
 }
 
 // 로그아웃 
@@ -86,7 +89,7 @@ export async function refreshToken(data) {
 // 토근 생성
 function generateAccessToken(user) {
   // 만료 기간 30분
-  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30m' })
+  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10s' })
 }
 function generateRfreshToken(user) {
   // 만료 기간 7일

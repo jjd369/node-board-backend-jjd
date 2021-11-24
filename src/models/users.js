@@ -18,7 +18,8 @@ const users = new mongoose.Schema({
   image: {
     type: String,
     default: ''
-  }
+  },
+  createdAt: { type: Date, default: Date.now },
 }, { versionKey: false })
 
 export default mongoose.model('Users', users)

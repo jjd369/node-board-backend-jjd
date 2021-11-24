@@ -10,6 +10,8 @@ let storage = multer.diskStorage({
   },
 })
 
-export const upload = multer({ dest: path.join(__dirname, '..', 'uploads/') })
+export const upload = multer({
+  dest: path.join(__dirname, '..', 'uploads/')
+})
 
 export const uploadUserImage = multer({ storage: storage })

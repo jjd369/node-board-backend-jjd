@@ -7,10 +7,8 @@ import { uploadUserImage } from '@/middlewares/uploadFile'
 const routes = Router()
 
 routes.get('/me', authenticateToken, wrapAsync(async (req, res) => {
-  // 유저 이름 리턴
-  const name = req.userInfo.name
-  const email = req.userInfo.email
-  res.json({ name, email }).status(200)
+  const userRecord = await usersModel.findOne({ _id: req.userInfo._id }, 'name email image createdAt')
+  res.json(userRecord).status(200)
 }))
 
 routes.get('/users', wrapAsync(async (req, res) => {
@@ -19,7 +17,8 @@ routes.get('/users', wrapAsync(async (req, res) => {
 }))
 
 routes.patch('/update', authenticateToken, uploadUserImage.single('attachment'), wrapAsync(async (req, res) => {
-  await usersModel.findOneAndUpdate({ _id: req.userInfo._id }, { ...req.body, image: req.file.filename })
+  const image = req.file.filename || ''
+  await usersModel.findOneAndUpdate({ _id: req.userInfo._id }, { ...req.body, image })
   res.json({ message: '수정완료' })
 }))
 
