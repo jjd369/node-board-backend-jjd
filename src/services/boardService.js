@@ -1,15 +1,18 @@
 import boardModel from '@/models/borad'
 import fileModel from '@/models/file'
 
-export async function getBoards(body) {
-  const { page, listNum } = body
+export async function getBoards(query) {
+  const { page, listNum } = query
 
   const boardRecord = await boardModel.find({})
     .populate('uploadedBy', ['email', 'name'])
     .populate('attachment')
 
-  const totalPage = Math.ceil(boardRecord / listNum)
-  return boardRecord
+  if (!boardRecord.length) return boardRecord
+
+  const totalPage = Math.ceil(boardRecord.length / listNum)
+  const lists = boardRecord.slice(page * listNum - listNum, page * listNum)
+  return { totalPage, listNum, page, lists }
 }
 
 export async function getBoard(_id) {

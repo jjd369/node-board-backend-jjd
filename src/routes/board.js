@@ -7,9 +7,10 @@ import { getBoard, getBoards, writeBoard, updateBoard, deleteBoard } from '@/ser
 const routes = Router()
 
 routes.get('/boards', authenticateToken, wrapAsync(async (req, res) => {
-  const boardRecord = await getBoards()
 
-  res.json(boardRecord).status(200)
+  const result = await getBoards(req.query)
+
+  res.json(result).status(200)
 }))
 
 routes.get('/boards/:id', authenticateToken, wrapAsync(async (req, res) => {
