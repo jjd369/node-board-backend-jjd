@@ -2,7 +2,7 @@ import { Router } from 'express'
 import usersModel from '@/models/users'
 import wrapAsync from '@/logs/errorHandler'
 import { authenticateToken } from '@/middlewares/isAuth'
-import { uploadUserImage } from '@/middlewares/uploadFile'
+import { upload } from '@/middlewares/uploadFile'
 
 const routes = Router()
 
@@ -16,10 +16,16 @@ routes.get('/users', wrapAsync(async (req, res) => {
   res.json({ result: userRecord })
 }))
 
-routes.patch('/update', authenticateToken, uploadUserImage.single('attachment'), wrapAsync(async (req, res) => {
-  const image = req.file.filename || ''
+routes.post('/update', upload.single('attachment'), authenticateToken, wrapAsync(async (req, res) => {
+  if (!req.file) {
+    await usersModel.findOneAndUpdate({ _id: req.userInfo._id }, { ...req.body })
+    return res.json({ message: '수정완료' })
+  }
+  const image = req.file.filename
   await usersModel.findOneAndUpdate({ _id: req.userInfo._id }, { ...req.body, image })
   res.json({ message: '수정완료' })
+
+
 }))
 
 export default routes

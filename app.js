@@ -8,21 +8,21 @@ import history from 'connect-history-api-fallback'
 const app = express()
 app.use(express.json())
 app.use(cors())
-// app.use(history(
-//   { verbose: true },
-//   { disableDotRule: true }))
+app.use(history(
+  { verbose: true },
+  { disableDotRule: true }))
 // db 연결
 startDatabase()
 
 // build 된 vue로 연결
 app.use(express.static('public'))
-// app.get('/', (req, res) => {
-//   res.sendFile('index.html')
-// })                                      
+app.get('/', (req, res) => {
+  res.sendFile('index.html')
+})
 
 // 라우트 연결
 app.use('/api', routes)
-app.use('/images', express.static(path.join(__dirname, 'src/userImages')))
+app.use('/images', express.static(path.join(__dirname, 'src/uploads')))
 
 /// catch 404 and forward to error handler
 app.use((req, res, next) => {
