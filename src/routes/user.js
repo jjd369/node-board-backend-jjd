@@ -2,7 +2,7 @@ import { Router } from 'express'
 import usersModel from '@/models/users'
 import wrapAsync from '@/logs/errorHandler'
 import { authenticateToken } from '@/middlewares/isAuth'
-import { upload } from '@/middlewares/uploadFile'
+import { uploadUserImage } from '@/middlewares/uploadFile'
 
 const routes = Router()
 
@@ -16,7 +16,7 @@ routes.get('/users', wrapAsync(async (req, res) => {
   res.json({ result: userRecord })
 }))
 
-routes.post('/update', upload.single('attachment'), authenticateToken, wrapAsync(async (req, res) => {
+routes.post('/update', uploadUserImage.single('attachment'), authenticateToken, wrapAsync(async (req, res) => {
   if (!req.file) {
     await usersModel.findOneAndUpdate({ _id: req.userInfo._id }, { ...req.body })
     return res.json({ message: '수정완료' })

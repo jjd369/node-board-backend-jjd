@@ -10,7 +10,8 @@ app.use(express.json())
 app.use(cors())
 app.use(history(
   { verbose: true },
-  { disableDotRule: true }))
+  { disableDotRule: true },
+))
 // db 연결
 startDatabase()
 
@@ -22,7 +23,7 @@ app.get('/', (req, res) => {
 
 // 라우트 연결
 app.use('/api', routes)
-app.use('/images', express.static(path.join(__dirname, 'src/uploads')))
+app.use('/images', express.static(path.join(__dirname, 'src/uploads/userImages')))
 
 /// catch 404 and forward to error handler
 app.use((req, res, next) => {
