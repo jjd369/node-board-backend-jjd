@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node -r esm app.js",
     "devStart": "nodemon -r esm app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "link-module-alias"
