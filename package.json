@@ -26,10 +26,10 @@
     "mongodb-memory-server": "^7.4.4",
     "mongoose": "^6.0.12",
     "multer": "^1.4.3",
-    "nodemailer": "^6.7.0"
+    "nodemailer": "^6.7.0",
+    "link-module-alias": "^1.2.0"
   },
   "devDependencies": {
-    "link-module-alias": "^1.2.0",
     "nodemon": "^2.0.13"
   }
 }
