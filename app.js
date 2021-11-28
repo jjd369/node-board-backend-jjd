@@ -16,10 +16,10 @@ app.use(history(
 startDatabase()
 
 // build 된 vue로 연결
-app.use(express.static('public'))
-app.get('/', (req, res) => {
-  res.sendFile('index.html')
-})
+app.use(express.static(path.join(__dirname, 'public')))
+// app.get('/', (req, res) => {
+//   res.sendFile('index.html')
+// })
 
 // 라우트 연결
 app.use('/api', routes)
