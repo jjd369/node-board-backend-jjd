@@ -13,7 +13,7 @@ app.use(history(
   { disableDotRule: true },
 ))
 // db 연결
-startDatabase()
+// startDatabase()
 
 // build 된 vue로 연결
 app.use(express.static(path.join(__dirname, 'public')))
