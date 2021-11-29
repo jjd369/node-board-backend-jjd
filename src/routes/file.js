@@ -1,8 +1,8 @@
 
 import { Router } from 'express'
 import path from 'path'
-import wrapAsync from '@/logs/errorHandler'
-import fileModle from '@/models/file'
+import wrapAsync from '../logs/errorHandler'
+import fileModle from '../models/file'
 
 const routes = Router()
 

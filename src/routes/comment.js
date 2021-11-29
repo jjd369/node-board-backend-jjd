@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import wrapAsync from '@/logs/errorHandler'
-import commentsModel from '@/models/comments'
-import boardsModel from '@/models/borad'
-import { authenticateToken } from '@/middlewares/isAuth'
+import wrapAsync from '../logs/errorHandler'
+import commentsModel from '../models/comments'
+import boardsModel from '../models/borad'
+import { authenticateToken } from '../middlewares/isAuth'
 
 const routes = Router()
 

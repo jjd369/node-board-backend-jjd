@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import wrapAsync from '@/logs/errorHandler'
-import { authenticateToken } from '@/middlewares/isAuth'
-import { upload } from '@/middlewares/uploadFile'
-import { getBoard, getBoards, writeBoard, updateBoard, deleteBoard } from '@/services/boardService'
+import wrapAsync from '../logs/errorHandler'
+import { authenticateToken } from '../middlewares/isAuth'
+import { upload } from '../middlewares/uploadFile'
+import { getBoard, getBoards, writeBoard, updateBoard, deleteBoard } from '../services/boardService'
 
 const routes = Router()
 

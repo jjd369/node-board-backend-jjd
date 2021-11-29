@@ -1,4 +1,4 @@
-import usersModel from '@/models/users'
+import usersModel from '../models/users'
 
 
 export async function insertUser(data) {

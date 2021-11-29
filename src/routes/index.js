@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import board from '@/routes/board'
-import user from '@/routes/user'
-import auth from '@/routes/auth'
-import comment from '@/routes/comment'
-import file from '@/routes/file'
+import board from './board'
+import user from './user'
+import auth from './auth'
+import comment from './comment'
+import file from './file'
 
 const routes = Router()
 

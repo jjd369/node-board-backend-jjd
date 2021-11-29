@@ -1,4 +1,4 @@
-import tokensModel from '@/models/tokens'
+import tokensModel from '../models/tokens'
 
 export async function insertToken(data) {
   return await tokensModel.create(data)

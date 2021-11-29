@@ -1,6 +1,6 @@
 import express from 'express'
-import { startDatabase } from '@/config/database'
-import routes from '@/routes'
+import { startDatabase } from './src/config/database'
+import routes from './src/routes'
 import cors from 'cors'
 import path from 'path'
 import history from 'connect-history-api-fallback'

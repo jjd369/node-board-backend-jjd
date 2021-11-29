@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import { signIn, signUp, signOut, refreshToken } from '@/services/authService'
-import { sendMail } from '@/services/mailservice'
-import { uploadUserImage } from '@/middlewares/uploadFile'
-import wrapAsync from '@/logs/errorHandler'
+import { signIn, signUp, signOut, refreshToken } from '../services/authService'
+import { sendMail } from '../services/mailservice'
+import { uploadUserImage } from '../middlewares/uploadFile'
+import wrapAsync from '../logs/errorHandler'
 
 const routes = Router()
 

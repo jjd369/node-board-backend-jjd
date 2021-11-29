@@ -1,5 +1,5 @@
-import boardModel from '@/models/borad'
-import fileModel from '@/models/file'
+import boardModel from '../models/borad'
+import fileModel from '../models/file'
 
 export async function getBoards(query) {
   const { page, listNum } = query

@@ -2,19 +2,19 @@ require('dotenv').config()
 
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import usersModel from '@/models/users'
-import tokensModel from '@/models/tokens'
+import usersModel from '../models/users'
+import tokensModel from '../models/tokens'
 
-createAdmin()
+// createAdmin()
 // admin 
-export async function createAdmin() {
-  const hashedPassword = await bcrypt.hash('123123', 10)
-  await usersModel.create({
-    name: 'admin',
-    email: 'test@123.com',
-    password: hashedPassword,
-  })
-}
+// export async function createAdmin() {
+//   const hashedPassword = await bcrypt.hash('123123', 10)
+//   await usersModel.create({
+//     name: 'admin',
+//     email: 'test@123.com',
+//     password: hashedPassword,
+//   })
+// }
 
 // 회원가입
 export async function signUp(data, file) {

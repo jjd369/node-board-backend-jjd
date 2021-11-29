@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import usersModel from '@/models/users'
-import wrapAsync from '@/logs/errorHandler'
-import { authenticateToken } from '@/middlewares/isAuth'
-import { uploadUserImage } from '@/middlewares/uploadFile'
+import usersModel from '../models/users'
+import wrapAsync from '../logs/errorHandler'
+import { authenticateToken } from '../middlewares/isAuth'
+import { uploadUserImage } from '../middlewares/uploadFile'
 
 const routes = Router()
 

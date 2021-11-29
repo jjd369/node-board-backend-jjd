@@ -1,4 +1,4 @@
-// import { startDatabase } from '@/config/database'
+// import { startDatabase } from 'src/config/database'
 import mongoose from 'mongoose'
 
 const tokens = new mongoose.Schema({
