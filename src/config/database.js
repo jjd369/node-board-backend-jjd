@@ -1,10 +1,13 @@
-import { MongoMemoryServer } from 'mongodb-memory-server'
+// import { MongoMemoryServer } from 'mongodb-memory-server'
 import mongoose from 'mongoose'
 
 export async function startDatabase() {
-  const mongo = await MongoMemoryServer.create()
-  const mongoDURL = mongo.getUri()
-  const connection = await mongoose.connect(mongoDURL, { useNewUrlParser: true })
+  // mongo db Atlas Cluster  url
+  const uri = process.env.MONGODB_URI
+
+  // const mongo = await MongoMemoryServer.create()
+  // const mongoDURL = mongo.getUri()
+  const connection = await mongoose.connect(uri, { useNewUrlParser: true })
 
   return connection
 }
