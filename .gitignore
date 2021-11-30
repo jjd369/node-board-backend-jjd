@@ -1,4 +1,4 @@
 node_modules
 .env
-src/uploads/
-src/userImages/
+src/uploads/userImages/
+src/uploads/attachments/
