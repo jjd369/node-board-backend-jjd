@@ -6,6 +6,7 @@ import path from 'path'
 import history from 'connect-history-api-fallback'
 
 const app = express()
+
 app.use(express.json())
 app.use(cors())
 app.use(history(
