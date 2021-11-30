@@ -29,6 +29,9 @@
     "nodemailer": "^6.7.0",
     "link-module-alias": "^1.2.0"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "devDependencies": {
     "nodemon": "^2.0.13"
   }
