@@ -1,13 +1,23 @@
 import multer from 'multer'
 import path from 'path'
+import multerS3 from 'multer-s3'
+import AWS from 'aws-sdk'
 
-let storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, path.join(__dirname, '..', '/uploads/userImages'))
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: 'ap-northeast-2'
+})
+
+let storage = multerS3({
+  s3: s3,
+  bucket: 'board-file-upload-jjd',
+  metadata: (req, file, cb) => {
+    cb(null, { fieldName: file.fieldname });
   },
-  filename(req, file, cb) {
-    cb(null, `${Date.now()}__${file.originalname}`)
-  },
+  key: (req, file, cb) => {
+    cb(null, `userImages/${Date.now().toString()}`)
+  }
 })
 
 export const upload = multer({

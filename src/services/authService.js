@@ -4,13 +4,11 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import usersModel from '../models/users'
 import tokensModel from '../models/tokens'
-import { s3Upload } from './fileService'
 
 // 회원가입
-export async function signUp(data) {
-  // s3Upload()
-  let userImageUrl = ''
-  // file ? userImageUrl = file.filename : userImageUrl = ''
+export async function signUp(data, file) {
+  let fileUrl
+  !file ? fileUrl = '' : fileUrl = file.location
 
   const { email, name, password } = data
   // email 중복 확인
@@ -19,11 +17,9 @@ export async function signUp(data) {
   // 해싱 패스워드
   const hashedPassword = await bcrypt.hash(password, 10)
 
-  const userObj = { name, password: hashedPassword, email, image: userImageUrl }
+  const userObj = { name, password: hashedPassword, email, image: fileUrl }
   // db에 user 생성
   const result = await usersModel.create(userObj)
-
-  if (!result) throw new Error('계정 생성이 실패했습니다.')
 
   return result
 }
