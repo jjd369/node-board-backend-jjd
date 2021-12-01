@@ -11,7 +11,7 @@ const s3 = new AWS.S3({
 
 let storage = multerS3({
   s3: s3,
-  bucket: 'board-file-upload-jjd',
+  bucket: 'my-board-file-upload-jjd',
   metadata: (req, file, cb) => {
     cb(null, { fieldName: file.fieldname });
   },
