@@ -4,23 +4,13 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import usersModel from '../models/users'
 import tokensModel from '../models/tokens'
-
-// createAdmin()
-// admin 
-// export async function createAdmin() {
-//   const hashedPassword = await bcrypt.hash('123123', 10)
-//   await usersModel.create({
-//     name: 'admin',
-//     email: 'test@123.com',
-//     password: hashedPassword,
-//   })
-// }
+import { s3Upload } from './fileService'
 
 // 회원가입
-export async function signUp(data, file) {
-
-  let userImageUrl
-  file ? userImageUrl = file.filename : userImageUrl = ''
+export async function signUp(data) {
+  // s3Upload()
+  let userImageUrl = ''
+  // file ? userImageUrl = file.filename : userImageUrl = ''
 
   const { email, name, password } = data
   // email 중복 확인

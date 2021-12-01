@@ -12,8 +12,9 @@ routes.post('/signIn', wrapAsync(async (req, res) => {
 }))
 
 routes.post('/signUp', uploadUserImage.single('attachment'), wrapAsync(async (req, res) => {
-
-  const { name, email } = await signUp(req.body, req.file)
+  console.log(req.body)
+  console.log(req.file)
+  const { name, email } = await signUp(req.body)
   await sendMail(req.body)
   res.status(200).json({ name, email })
 }))
