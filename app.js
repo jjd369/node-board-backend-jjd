@@ -13,6 +13,7 @@ app.use(history(
   { verbose: true },
   { disableDotRule: true },
 ))
+
 // db 연결
 startDatabase()
 
@@ -21,7 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // 라우트 연결
 app.use('/api', routes)
-app.use('/images', express.static(path.join(__dirname, 'src/uploads/userImages')))
 
 /// catch 404 and forward to error handler
 app.use((req, res, next) => {
