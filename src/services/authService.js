@@ -37,8 +37,8 @@ export async function signIn(data) {
   if (!comparePassword) throw new Error('비밀번호를 확인해주세요.')
 
   // 토큰 생성
-  const accessToken = generateAccessToken({ email: userRecord.email, name: userRecord.name, _id: userRecord._id })
-  const refreshToken = generateRfreshToken({ email: userRecord.email, name: userRecord.name, _id: userRecord._id })
+  const accessToken = generateAccessToken({ email: userRecord.email, name: userRecord.name, _id: userRecord._id, image: userRecord.image })
+  const refreshToken = generateRfreshToken({ email: userRecord.email, name: userRecord.name, _id: userRecord._id, image: userRecord.image })
 
   // db에 refresh token 저장
   await tokensModel.create({ refreshToken })
@@ -67,7 +67,7 @@ export async function refreshToken(data) {
   return jwt.verify(data.refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, userRecord) => {
     if (err) throw new Error('토큰이 유효하지 않습니다.')
     // 토큰 재발급 
-    const accessToken = generateAccessToken({ email: userRecord.email, name: userRecord.name, _id: userRecord._id })
+    const accessToken = generateAccessToken({ email: userRecord.email, name: userRecord.name, _id: userRecord._id, image: userRecord.image })
     return accessToken
   })
 }

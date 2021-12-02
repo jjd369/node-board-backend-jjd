@@ -3,6 +3,7 @@ import usersModel from '../models/users'
 import wrapAsync from '../logs/errorHandler'
 import { authenticateToken } from '../middlewares/isAuth'
 import { uploadUserImage } from '../middlewares/uploadFile'
+import { deleteObject } from '../services/awsS3Service'
 
 const routes = Router()
 
@@ -21,8 +22,8 @@ routes.post('/update', uploadUserImage.single('attachment'), authenticateToken, 
     await usersModel.findOneAndUpdate({ _id: req.userInfo._id }, { ...req.body })
     return res.json({ message: '수정완료' })
   }
-  const image = req.file.filename
-  await usersModel.findOneAndUpdate({ _id: req.userInfo._id }, { ...req.body, image })
+  await deleteObject(req.userInfo.image)
+  await usersModel.findOneAndUpdate({ _id: req.userInfo._id }, { ...req.body, image: req.file.location })
   res.json({ message: '수정완료' })
 
 

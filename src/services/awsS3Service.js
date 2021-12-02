@@ -1,3 +1,21 @@
+import { client } from '../config/awsS3Client'
+
+export async function deleteObject(key) {
+  var params = {
+    Bucket: "examplebucket",
+    Delete: {
+      Objects: [
+        {
+          Key: `userImages/${key}`
+        },
+      ],
+      Quiet: false
+    }
+  }
+  const data = await client.deleteObjects(params)
+
+  return data
+}
 // require('dotenv').config()
 // import AWS from 'aws-sdk'
 // import fs from 'fs'
