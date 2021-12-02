@@ -22,7 +22,9 @@ routes.post('/update', uploadUserImage.single('attachment'), authenticateToken, 
     await usersModel.findOneAndUpdate({ _id: req.userInfo._id }, { ...req.body })
     return res.json({ message: '수정완료' })
   }
-  await deleteObject(req.userInfo.image)
+  const imageKey = req.userInfo.image.match(/\d{13}/)
+  const data = await deleteObject(imageKey[0])
+  console.log(data)
   await usersModel.findOneAndUpdate({ _id: req.userInfo._id }, { ...req.body, image: req.file.location })
   res.json({ message: '수정완료' })
 

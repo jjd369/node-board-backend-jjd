@@ -75,7 +75,7 @@ export async function refreshToken(data) {
 // 토근 생성
 function generateAccessToken(user) {
   // 만료 기간 30분
-  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10s' })
+  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10m' })
 }
 function generateRfreshToken(user) {
   // 만료 기간 7일
