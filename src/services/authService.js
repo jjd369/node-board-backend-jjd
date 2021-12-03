@@ -1,15 +1,10 @@
-require('dotenv').config()
-
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import usersModel from '../models/users'
 import tokensModel from '../models/tokens'
 
 // 회원가입
-export async function signUp(data, file) {
-  let fileUrl
-  !file ? fileUrl = '' : fileUrl = file.location
-
+export async function signUp(data) {
   const { email, name, password } = data
   // email 중복 확인
   const userRecord = await usersModel.findOne({ email })
@@ -17,7 +12,7 @@ export async function signUp(data, file) {
   // 해싱 패스워드
   const hashedPassword = await bcrypt.hash(password, 10)
 
-  const userObj = { name, password: hashedPassword, email, image: fileUrl }
+  const userObj = { name, password: hashedPassword, email }
   // db에 user 생성
   const result = await usersModel.create(userObj)
 

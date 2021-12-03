@@ -5,11 +5,13 @@ import AWS from 'aws-sdk'
 export const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: 'ap-northeast-2'
+  region: process.env.REGION
 })
 
 export const s3Client = new S3Client({
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.REGION
+  region: process.env.REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+  }
 })

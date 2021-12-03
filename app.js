@@ -4,16 +4,17 @@ import routes from './src/routes'
 import cors from 'cors'
 import path from 'path'
 import history from 'connect-history-api-fallback'
+// import fileUpload from 'express-fileupload'
 
 const app = express()
 
 app.use(express.json())
+// app.use(fileUpload())
 app.use(cors())
 app.use(history(
   { verbose: true },
   { disableDotRule: true },
 ))
-
 // db 연결
 startDatabase()
 
@@ -29,7 +30,7 @@ app.use((req, res, next) => {
   err['status'] = 404
   next(err)
 })
-
+require('dotenv').config()
 /// error handlers
 app.use((err, req, res, next) => {
   /**

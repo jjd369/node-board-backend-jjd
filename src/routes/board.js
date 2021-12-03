@@ -3,6 +3,7 @@ import wrapAsync from '../logs/errorHandler'
 import { authenticateToken } from '../middlewares/isAuth'
 import { upload } from '../middlewares/uploadFile'
 import { getBoard, getBoards, writeBoard, updateBoard, deleteBoard } from '../services/boardService'
+import { uploadUserImage } from '../middlewares/uploadFile'
 
 const routes = Router()
 
@@ -16,8 +17,8 @@ routes.get('/boards/:id', authenticateToken, wrapAsync(async (req, res) => {
   res.json(boardRecord).status(200)
 }))
 
-routes.post('/write', upload.single('attachment'), authenticateToken, wrapAsync(async (req, res) => {
-  const result = await writeBoard(req.body, req.userInfo, req.file)
+routes.post('/write', authenticateToken, uploadUserImage.array('attachment', 3), wrapAsync(async (req, res) => {
+  const result = await writeBoard(req.body, req.userInfo, req.files)
   res.json({ message: '글 작성 완료', ...result }).status(200)
 }))
 

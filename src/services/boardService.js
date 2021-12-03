@@ -1,4 +1,5 @@
 import boardModel from '../models/borad'
+import file from '../models/file'
 import fileModel from '../models/file'
 
 export async function getBoards(query) {
@@ -37,10 +38,19 @@ export async function getBoard(_id) {
   return boardRecord
 }
 
-export async function writeBoard(body, userInfo, file) {
+export async function writeBoard(body, userInfo, files) {
+  console.log(file)
   if (file) {
-    const createFile = await fileModel.create({ originalFileName: file.originalname, serverFileName: file.filename, uploadedBy: userInfo._id })
-    const result = await boardModel.create({ uploadedBy: userInfo._id, ...body, attachment: createFile._id })
+    files.forEach(async file => {
+      await fileModel.create({
+        originalFileName: file.originalname,
+        serverFileName: file.key,
+        uploadedBy: userInfo._id,
+        location: file.location,
+        size: file.size
+      })
+    })
+    const result = await boardModel.create({ uploadedBy: userInfo._id, ...body, attachment: [''] })
     return result
   }
 
