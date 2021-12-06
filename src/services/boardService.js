@@ -1,6 +1,7 @@
 import boardModel from '../models/borad'
 import file from '../models/file'
 import fileModel from '../models/file'
+import map from 'lodash/map'
 
 export async function getBoards(query) {
   const { page, listNum } = query
@@ -39,23 +40,23 @@ export async function getBoard(_id) {
 }
 
 export async function writeBoard(body, userInfo, files) {
-  console.log(file)
-  if (file) {
+  if (files) {
+    const boardRecord = await boardModel.create({ uploadedBy: userInfo._id, ...body })
     files.forEach(async file => {
-      await fileModel.create({
+      let fileRecord = await fileModel.create({
         originalFileName: file.originalname,
         serverFileName: file.key,
         uploadedBy: userInfo._id,
         location: file.location,
-        size: file.size
+        size: file.size,
+        boardId: boardRecord._id
       })
+      await boardModel.findOneAndUpdate({ _id: boardRecord._id }, { $push: { attachment: fileRecord._id } })
     })
-    const result = await boardModel.create({ uploadedBy: userInfo._id, ...body, attachment: [''] })
-    return result
+    return boardRecord
   }
 
   const result = await boardModel.create({ uploadedBy: userInfo._id, ...body })
-
   return result
 }
 

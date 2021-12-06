@@ -1,24 +1,14 @@
 import { s3, s3Client } from '../config/awsS3Client'
 
-export async function getSignedUrl({ fileName, fileType }) {
+export async function getObject(key) {
 
   const s3Params = {
     Bucket: process.env.S3_BUCKET,
-    Key: fileName,
-    Expires: 60,
-    ContentType: fileType,
-    ACL: 'public-read'
+    Key: key
   }
-
   try {
-    const data = await s3.getSignedUrl('putObject', s3Params)
-
-    const returnData = {
-      signedRequest: data,
-      url: `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${fileName}`
-    }
-
-    return returnData
+    const data = await s3.getObject(s3Params).promise()
+    return data
   } catch (err) {
     throw Error(err)
   }

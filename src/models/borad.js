@@ -10,8 +10,8 @@ const board = mongoose.Schema({
     type: String,
     required: [true, '글 내용을 입력해주세요!']
   },
-  attachment: [{ type: String }],
-  createdAt: { type: Date, default: Math.floor(Date.now() / 1000) }, // default 항목으로 현재시간
+  attachment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Files' }],
+  createdAt: { type: Date, default: Math.floor(Date.now() / 1000) },
   updatedAt: { type: Date },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comments' }],
 }, { versionKey: false })
