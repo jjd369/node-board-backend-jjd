@@ -4,12 +4,10 @@ import routes from './src/routes'
 import cors from 'cors'
 import path from 'path'
 import history from 'connect-history-api-fallback'
-// import fileUpload from 'express-fileupload'
 
 const app = express()
 
 app.use(express.json())
-// app.use(fileUpload())
 app.use(cors())
 app.use(history(
   { verbose: true },

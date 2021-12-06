@@ -1,14 +1,17 @@
-import { s3, s3Client } from '../config/awsS3Client'
+import { s3 } from '../config/awsS3Client'
+import fileModle from '../models/file'
 
 export async function getObject(key) {
-
-  const s3Params = {
-    Bucket: process.env.S3_BUCKET,
-    Key: key
-  }
   try {
-    const data = await s3.getObject(s3Params).promise()
-    return data
+    const fileRecord = await fileModle.findOne({ serverFileName: key })
+
+    const s3Params = {
+      Bucket: process.env.S3_BUCKET,
+      Key: key
+    }
+
+    const fileStream = await s3.getObject(s3Params)
+    return { fileStream, originalFileName: fileRecord.originalFileName }
   } catch (err) {
     throw Error(err)
   }
