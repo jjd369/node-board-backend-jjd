@@ -18,7 +18,7 @@ export async function getBoards(query) {
 }
 
 export async function getBoard(_id) {
-  const boardRecord = await boardModel.findOne({ _id })
+  const boardRecord = await boardModel.findOneAndUpdate({ _id }, { $inc: { view: 1 } })
     .populate({
       path: 'comments', populate: [
         {

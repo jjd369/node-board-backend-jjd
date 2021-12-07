@@ -11,9 +11,10 @@ const board = mongoose.Schema({
     required: [true, '글 내용을 입력해주세요!']
   },
   attachment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Files' }],
-  createdAt: { type: Date, default: Math.floor(Date.now() / 1000) },
+  createdAt: { type: Date, default: Date.now() },
   updatedAt: { type: Date },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comments' }],
+  view: { type: Number, default: 0 }
 }, { versionKey: false })
 
 export default mongoose.model('Boards', board)

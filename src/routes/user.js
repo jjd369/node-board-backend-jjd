@@ -19,7 +19,7 @@ routes.get('/users', wrapAsync(async (req, res) => {
 routes.post('/update', authenticateToken, uploadUserImage.single('userImage'), wrapAsync(async (req, res) => {
   if (!req.file) {
     await usersModel.findOneAndUpdate({ _id: req.userInfo._id }, { ...req.body })
-    return res.json({ message: '수정완료', ...data })
+    return res.json({ message: '수정완료' })
   }
 
   await usersModel.findOneAndUpdate({ _id: req.userInfo._id }, { ...req.body, image: req.file.location })
