@@ -17,8 +17,8 @@ POST  http://localhost:3000/api/auth/signIn
 Content-Type: application/json
 
 {
-  "email": "ghana369@gmail.com",
-  "password": "password1"
+  "email": "test@123.com",
+  "password": "123123"
 }
 ### signOut
 delete  http://localhost:3000/api/auth/signOut
@@ -40,8 +40,8 @@ Content-Type: application/json
 # board api
 
 ###  boards
-GET http://localhost:3000/api/board/boards
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4ZDMyZjNiNzllYTdlN2NhNzZiMTM3IiwiaWF0IjoxNjM2NjQzNTgyLCJleHAiOjE2MzY2NDUzODJ9.9e5T6OzSad2KwxDaUPXQ_R7DoWr2LuUxdgs1m6WqJAg
+GET http://localhost:3000/api/board/boards?page="1"&listNum="4"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAMTIzLmNvbSIsIm5hbWUiOiLslrTrk5zrr7zsnbTri7chIiwiX2lkIjoiNjFhNTA4NTNjYWE1MTA4ODYzOGZjZGE5IiwiaW1hZ2UiOiJodHRwczovL215LWJvYXJkLWZpbGUtdXBsb2FkLWpqZC5zMy51cy1lYXN0LTIuYW1hem9uYXdzLmNvbS91c2VySW1hZ2VzL3Rlc3QlNDAxMjMuY29tIiwiaWF0IjoxNjM5MzI2NTQ3LCJleHAiOjE2MzkzMjcxNDd9.txfvHx2iHdaFosIS2k-N2WOH7gZy3AXYUHrF7rgHxtg
 ###
 GET http://localhost:3000/api/board/boards/618d330db79ea7e7ca76b13f
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdoYW5hMzY5QGdtYWlsLmNvbSIsIm5hbWUiOiJqamQxIiwiX2lkIjoiNjE4ZDMyZjNiNzllYTdlN2NhNzZiMTM3IiwiaWF0IjoxNjM2NjQzNTgyLCJleHAiOjE2MzY2NDUzODJ9.9e5T6OzSad2KwxDaUPXQ_R7DoWr2LuUxdgs1m6WqJAg

@@ -1,5 +1,4 @@
 import multer from 'multer'
-import path from 'path'
 import multerS3 from 'multer-s3'
 import { s3 } from '../config/awsS3Client'
 require('dotenv').config()
@@ -16,10 +15,6 @@ let storage = multerS3({
     }
     cb(null, `userImages/${req.userInfo.email}`)
   }
-})
-
-export const upload = multer({
-  dest: path.join(__dirname, '..', 'uploads/attachments')
 })
 
 export const uploadUserImage = multer({
