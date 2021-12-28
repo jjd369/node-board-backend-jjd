@@ -15,6 +15,7 @@ export async function signUp(data) {
   const userObj = { name, password: hashedPassword, email }
   // db에 user 생성
   const result = await usersModel.create(userObj)
+  console.log(result)
 
   return result
 }
